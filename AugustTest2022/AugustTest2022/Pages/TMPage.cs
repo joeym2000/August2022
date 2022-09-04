@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using AugustTest2022.Utilities;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace AugustTest2022.Pages
             //Click on the drop down button and select time 
             IWebElement dropDownButton = driver.FindElement(By.XPath("//*[@id=\'TimeMaterialEditForm\']/div/div[1]/div/span[1]/span/span[2]"));
             dropDownButton.Click();
-            Thread.Sleep(1000);
+            WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id='TimeMaterialEditForm']/div/div[1]/div/span[1]/span/span[2]", 3);
             IWebElement timeText = driver.FindElement(By.XPath("//*[@id=\'TypeCode_listbox\']/li[2]"));
             timeText.Click();
 
@@ -86,6 +87,7 @@ namespace AugustTest2022.Pages
             Thread.Sleep(1000);
 
             // Check if record is edited
+            WaitHelpers.WaitToBeClickable(driver, "XPath", "//*[@id='tmsGrid']/div[4]/a[4]", 3);
             IWebElement lastPageButton2 = driver.FindElement(By.XPath("//*[@id=\'tmsGrid\']/div[4]/a[4]"));
             lastPageButton2.Click();
             IWebElement newEditedCode = driver.FindElement(By.XPath("//*[@id=\'tmsGrid\']/div[3]/table/tbody/tr[last()]/td[1]"));
